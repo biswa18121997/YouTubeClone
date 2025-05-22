@@ -8,6 +8,20 @@ export default function Register(){
     const [mail,setMail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    async function handleRegister(e){
+        e.preventDefault();
+        try {
+            const res = await fetch('http://localhost:8086/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({name, email: mail , password })
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return(<div className="w-[80vw] relative left-[20vw] h-screen">
 
         <div className="flex flex-col justify-center items-center h-4/5 w-3/4 ">
@@ -27,8 +41,8 @@ export default function Register(){
                     <i onClick={()=>setShow(!show)} class={show?'fa-solid fa-eye':'fa-solid fa-eye-low-vision' }></i>
                 </section>
                 <p className="text-blue-700 underline underline-offset-8 m-1">Forgot your Password .? </p>         
-                    <button className="p-2 m-2 rounded-2xl border w-full">Login</button> 
-                    <button className="p-2 m-2 rounded-2xl border w-full bg-green-400">Register</button> 
+                    <button onClick={(e)=>handleRegister} className="p-2 m-2 rounded-2xl border w-full">Register</button> 
+                    <button className="p-2 m-2 rounded-2xl border w-full bg-green-400">Login</button> 
             </form>
         </div>
     </div>)

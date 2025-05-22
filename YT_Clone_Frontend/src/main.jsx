@@ -6,6 +6,8 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Login from './components/Login.jsx'
 import HomePage from './components/HomePage.jsx'
 import Register from './components/Register.jsx'
+import Channels from './components/Channels.jsx'
+import VideoPage from './components/VideoPage.jsx'
 
 const routes=createBrowserRouter([{
     path:"/",
@@ -22,6 +24,14 @@ const routes=createBrowserRouter([{
       {
         path : '/register',
         element : <Register />
+      },
+      {
+        path : '/channel',
+        element : <Channels />
+      },
+      {
+        path : '/video/:id',
+        element : <VideoPage />
       }
     ]
 

@@ -8,6 +8,20 @@ export default function Login(){
     let [email,setEmail] = useState('');
     let [password,setPassword] =useState('');
 
+    async function handleLogin(){
+        e.preventDefault();
+        try {
+            const res = await fetch('http://localhost:8086/login', { // Change URL if needed
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return(<div className="w-[80vw] relative left-[20vw] h-screen">
 
         <div className="flex flex-col justify-center items-center h-4/5 w-3/4 ">
