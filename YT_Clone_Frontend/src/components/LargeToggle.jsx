@@ -39,7 +39,7 @@ export default function LargeToggle (){
     }]
 
 
-    return(<div className="w-[15vw] flex flex-col justify-start items-center fixed  h-screen text-white bg-gray-800">
+    return(<div className="w-[12vw] flex flex-col justify-start items-center fixed  h-screen text-white bg-gray-800">
 
 {smallToggleItems.map((items)=>
         <div className="flex justify-center items-center flex-col m-2 p-2">

@@ -2,37 +2,41 @@ import mongoose from 'mongoose'
 import { videoSchema } from './VideoModel.js';
 
 export const channelSchema= new mongoose.Schema({
-    channelID:{
+    channelId:{
         type : String,
         required : true,
-        unique : true,
+        // unique : true ,
         default : String(new Date().getTime())
     },
     tags:{
-        type : [String]
+        type : [String],
+        required : false,
+        default : []
     },
     channelName:{
         type : String,
     },
     OwnerID:{
-        type : Number,
-        required : true
+        type : String,
+        required : true,
+        
     },
     channelDescription:{
         type : String,
         required : true, 
-
+        default : 'Youtube_Clone_Channel to kepp you entertained and informative..!'
     },
     channelBanner :{
         type : String,
-        required: true,
         default : 'https://eternitymarketing.com/assets/image-cache/blog/YouTubeCoverImage.8bc2171d.png'
     },
     subscribersCount:{
-        type : Number
+        type : Number,
+        default : 0,
     },
     videos:{
-        type : [videoSchema]
+        type : [videoSchema],
+        default : []
     }
 });
 

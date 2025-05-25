@@ -8,6 +8,9 @@ import HomePage from './components/HomePage.jsx'
 import Register from './components/Register.jsx'
 import Channels from './components/Channels.jsx'
 import VideoPage from './components/VideoPage.jsx'
+import Downloads from './components/Downloads.jsx'
+import Profile from './components/Profile.jsx'
+import Subscribed from './components/Subscribed.jsx'
 
 const routes=createBrowserRouter([{
     path:"/",
@@ -32,6 +35,18 @@ const routes=createBrowserRouter([{
       {
         path : '/video/:id',
         element : <VideoPage />
+      },
+      {
+        path: '/downloads',
+        element: <Downloads />,
+      },
+      {
+        path : '/profile',
+        element: <Profile />
+      },
+      {
+        path : '/subcriberslist',
+        element : <Subscribed />
       }
     ]
 

@@ -1,14 +1,19 @@
-import { useState } from "react"
-import { Link } from "react-router-dom";
+import { useState,useContext } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import {UserContext} from '../utils/Context.jsx'
 
 
-export default function Login(){
+
+export default  function Login(){
 
     const [show, setShow] = useState(false);
     let [email,setEmail] = useState('');
     let [password,setPassword] =useState('');
+    let [response , setResponse] = useState();
+    let redirect = useNavigate();
+    let {setData}  = useContext(UserContext);
 
-    async function handleLogin(){
+    async function handleLogin(e){
         e.preventDefault();
         try {
             const res = await fetch('http://localhost:8086/login', { // Change URL if needed
@@ -16,6 +21,19 @@ export default function Login(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             });
+            let data = await res.json();
+            setResponse(data);
+          if(data.success){
+            setData({ user: data.user, profile: data.profile ,token: data.token});
+            console.log(data.token)
+            localStorage.setItem('userAuth', JSON.stringify(data));
+            redirect('/');
+          }
+          else{ 
+            setData({});
+            // setEmail('');
+            // setPassword('');
+          }
         } catch (error) {
             console.log(error)
         }
@@ -27,7 +45,7 @@ export default function Login(){
         <div className="flex flex-col justify-center items-center h-4/5 w-3/4 ">
             <h1 className="text-3xl font-serif underline underline-offset-8">Login / Sign in User :</h1><br /><br />
             <hr />
-            <i className="fa-solid fa-user  p-2 m-2 rounded-2xl text-4xl border-2"></i>
+            <i className="fa-solid fa-user p-2 m-2 rounded-2xl text-4xl border-2 "></i>
 
 
             <form action="/login" className="flex flex-col justify-start items-start border p-4 rounded-2xl w-2/3">
@@ -40,12 +58,14 @@ export default function Login(){
                 </section>
                 <p className="text-blue-700 underline underline-offset-8 m-1" onClick={()=>alert('No Worries just Create a New One.')}>Forgot your Password .? </p>
                 
-                    <button className="p-2 m-2 rounded-2xl border w-full">Login</button> 
-                     <Link to={'/register'} className="w-full">
+                    <button onClick={(e)=>handleLogin(e)} className="p-2 m-2 rounded-2xl border w-full">Login</button> 
+                    <Link to={'/register'} className="w-full">
                         <button className="p-2 m-2 rounded-2xl border w-full bg-green-400">Register</button> 
                     </Link>
+
+                    {!response?.sucess && <h2 className="text-center text-red-400 font font-semibold">{response?.message}</h2>}
+
             </form>
-           
         </div>
     </div>)
 }

@@ -1,13 +1,26 @@
 import LargeToggle from './LargeToggle';
 import SmallToggle from "./SmallToggle";
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {UserContext} from '../utils/Context.jsx';
+import { useContext } from 'react';
 
 
 
 export default function Navbar(){
+    let navigate = useNavigate();
     const [smallToggle,setSmallToggle] =useState(true);
+    let {user, profile, token} = useContext(UserContext);
+    let {setData}  = useContext(UserContext);
+    function signOut(){
 
+        
+        setData({ user:{}, profile:{} ,token: {}});
+        localStorage.clear();
+        navigate('/login');
+
+    }
+  
 
 
     return(<>
@@ -21,22 +34,30 @@ export default function Navbar(){
             </div>
             </Link>
         </div>
-        <div className="w-2/3 max-[33vw] flex justify-center items-center border">
+        <div className="w-1/3 max-[33vw] flex justify-center items-center border">
             <input type="text" className=" bg-white w-3/4 p-2 rounded-2xl"/>
             <button className="w-1/4 border h-full p-1 rounded-2xl"><i className="fa-solid fa-magnifying-glass-arrow-right text-2xl"></i></button>
         </div>
 
-        <div className="flex w-1/3 justify-around"> 
-        <Link to={'/channel'}>
-            <div>
-                + Create / Channels
-            </div>
-        </Link>
+        <div className="flex w-1/3 justify-center items-center gap-5"> 
+            <Link to={'/channel'}>
+                <div className='p-2 m-2 border rounded-2xl'>
+                    + Create / Channels
+                </div>
+            </Link>
             <i class="fa-solid fa-envelope"></i>
-            <div className="h-10 w-10 rounded-full bg-amber-300 flex justify-center items-center">
-B
+            <div className='p-2 flex flex-row-reverse gap-2'>
+                 <Link to={'/profile'}>
+                    <img className='h-10 w-10 border bg-cover bg-center rounded-full' src={user?.picture} alt="" />    
+                    <h1>{user?.name}</h1>
+                </Link>
+                <Link to={localStorage.getItem('userAuth')?'':'/login'}>
+                    <button onClick={signOut} className='p-1 m-1 border rounded-2xl text-sm'> <i class="fa-solid fa-right-from-bracket"></i> {localStorage.getItem('userAuth')? "LogOut" : "Log In"}</button>
+                </Link>
             </div>
+           
         </div>
+        
     </nav>
         { smallToggle &&<SmallToggle />}
         {!smallToggle && <LargeToggle />}

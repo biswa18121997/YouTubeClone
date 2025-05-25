@@ -9,32 +9,42 @@ export const videoSchema= new mongoose.Schema({
     },
     tags:{
         type : [String],
+        required : true,
+        default : []
     },
     comments:{
-        type : [commentSchema]
+        type : [commentSchema],
+        default :[]
     },
     likes:{
-        type : Number
+        type : Number,
+        required : true,
+        default : 0,
     },
     dislikes:{
-        type : Number
+        type : Number,
+        required : true,
+        default : 0
     },
     videoThumbnail:{
-        type:String
+        type:String , 
+        default :'https://img.freepik.com/premium-vector/red-youtube-logo-social-media-logo_197792-1803.jpg?semt=ais_hybrid&w=740'
 
     },
     videoTitle:{
         type: String,
+        required:true
 
     },
     videoDescription:{
         type: String,
-
+        required : true
     },
     channelId:{
-        type : String
+        type : String,
+        required: true
     }
     
 });
 
-export const VideoSchema = mongoose.model('videos', videoSchema);
+export const VideoModel = mongoose.model('videos', videoSchema);

@@ -1,19 +1,24 @@
-import LargeToggle from "./components/LargeToggle"
 import Navbar from "./components/Navbar"
-import SmallToggle from "./components/SmallToggle"
-import HomePage from './components/HomePage'
-import Login from "./components/Login"
 import { Outlet } from "react-router-dom"
+import { useState } from "react"
+import { UserProvider} from "./utils/Context.jsx"
+
 
 
 function App() {
-  
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const setData = ({user,profile})=>{
+    setUser(user);
+    setProfile(profile);
+  }
 
   return (
     <>
+    <UserProvider >
       <Navbar/>
       <Outlet />
-      {/* <Login /> */}
+    </UserProvider>
     </>
   )
 }

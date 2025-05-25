@@ -3,7 +3,7 @@ import {Link } from 'react-router-dom'
 function VideoPreviewCard({item}) {
 
 
-  return (<div className="w-full border bg-gray-800 p-2 rounded-2xl m-2 flex flex-col justify-center h-fit ">
+  return (<div className="w-full border bg-gray-800 p-2 rounded-2xl m-2 flex flex-col justify-center h-full ">
     <Link to={`/video/${item.id}`} state={{item}}>
             <img src={item?.snippet?.thumbnails?.medium?.url} alt="" className="w-full rounded-2xl h-2/3"/>
             <h2 className="text-md font-semibold text-white m-1">{item.snippet.description.slice(0,40)}</h2>

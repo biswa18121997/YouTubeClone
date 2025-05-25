@@ -2,10 +2,10 @@ import mongoose from 'mongoose'
 
 export const userSchema= new mongoose.Schema({
     userID:{
-        type : Number,
+        type : String,
         required : true,
         unique : true,
-        default : new Date().getTime()
+        default : String(new Date().getTime())
     },
     name:{
         type : String,

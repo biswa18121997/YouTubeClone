@@ -4,12 +4,12 @@ import { videoSchema } from './VideoModel.js';
 
 const profileSchema= new mongoose.Schema({
     userID:{
-        type: Number,
+        type: String,
         required : true,
         unique : true, 
     },
     name : {
-        type: Number,
+        type: String,
         required : true,
     },
     email: {
@@ -19,21 +19,33 @@ const profileSchema= new mongoose.Schema({
     },
     interests:{
         type: [String],
+        required: true,
+        default : []
     },
     downloaded:{
-        type : [videoSchema]
+        type : [videoSchema],
+       
+        default : []
     },
     history:{
-        type : [videoSchema]
+        type : [videoSchema],
+        required: true,
+        default : []
     },
     recentlyLikedVideos:{
-         type : [videoSchema]
+         type : [videoSchema],
+         required: true,
+        default : []
     },
     subscribedChannels:{
-        type : [channelSchema]
+        type : [channelSchema],
+        required: true,
+        default : []
     },
     channels:{
-        type : [channelSchema]
+        type : [channelSchema],
+        required: true,
+        default : []
     }
 });
 
