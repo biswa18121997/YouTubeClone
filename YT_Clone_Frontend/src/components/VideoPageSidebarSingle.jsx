@@ -3,24 +3,19 @@ import { useFetch } from '../utils/Fetch';
 import { Link, useLocation,useParams } from 'react-router-dom';
 
 function VideoPageSidebarSingle({prevPageInfo}) {
-  let location = useLocation();
+
   let params = useParams();
-  let item = location.state.item;
-  let dataFromLast = location.state.item;
   const API_KEY = "AIzaSyCLfNg8E42zJZF5obZA-5e4AboR5YzKRFY"; 
-  const MAX_RESULTS = 10;
-  const query = dataFromLast.snippet.tags.join().split(' ').slice(0,5).join(' ');
-  console.log(dataFromLast,query,prevPageInfo,item);
-
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${params.id}&maxResults=${MAX_RESULTS}&key=${API_KEY}`;
-
+  const MAX_RESULTS = 10;  
+  let tags = prevPageInfo?.join(' ');
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${tags}&maxResults=${MAX_RESULTS}&key=${API_KEY}`;
   let {data,error , loading} = useFetch(url);
-  console.log(data);
 
 
-  return (<div className='   flex flex-col  w-full m-2 overflow-y-scroll sticky top-5 h-screen '>
+  return (<div className='   flex flex-col  w-2/5 m-2 overflow-y-scroll sticky top-5 h-screen '>
+    <h1>Videos of Similar Types: (from youtube)</h1>
        {data?.items?.map((item, index) => (
-        <Link to={`/video/${item?.id?.videoId}`} state={item}>
+        <Link to={`/video/${item?.id?.videoId}`} >
           <div key={index} className="flex justify-between items-center border p-1 h-fit  w-full">
               <img src={item.snippet.thumbnails.medium.url} alt='THUMBNAIL' className="w-1/2 h-full"/>
               <div className="ml-4">

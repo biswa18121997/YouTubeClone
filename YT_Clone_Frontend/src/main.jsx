@@ -45,7 +45,7 @@ const routes=createBrowserRouter([{
         element: <Profile />
       },
       {
-        path : '/subcriberslist',
+        path : '/subscriberslist',
         element : <Subscribed />
       }
     ]

@@ -6,7 +6,7 @@ const profileSchema= new mongoose.Schema({
     userID:{
         type: String,
         required : true,
-        unique : true, 
+         
     },
     name : {
         type: String,
@@ -24,7 +24,7 @@ const profileSchema= new mongoose.Schema({
     },
     downloaded:{
         type : [videoSchema],
-       
+       required:true,
         default : []
     },
     history:{
@@ -44,7 +44,7 @@ const profileSchema= new mongoose.Schema({
     },
     channels:{
         type : [channelSchema],
-        required: true,
+        
         default : []
     }
 });

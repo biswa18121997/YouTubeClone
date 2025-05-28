@@ -4,8 +4,9 @@ import { commentSchema } from './CommentModel.js';
 export const videoSchema= new mongoose.Schema({
     videoId:{
         type: String,
-        unique : true,
+       // unique : true,
         required : true,
+        default: ()=>new Date().getTime()
     },
     tags:{
         type : [String],
@@ -14,7 +15,8 @@ export const videoSchema= new mongoose.Schema({
     },
     comments:{
         type : [commentSchema],
-        default :[]
+        default :[],
+        required: true
     },
     likes:{
         type : Number,

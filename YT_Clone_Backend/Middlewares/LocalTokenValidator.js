@@ -5,12 +5,9 @@ import jwt from 'jsonwebtoken'
 
 export default function LocalTokenValidator(req, res, next){
     let token = req.body.userLoginToken;
-    let tokenReal=jwt.verify(req.body.userLoginToken, SECRET_KEY_JWT);
-   
-     let {userID,name,email } = tokenReal;
+    let tokenReal=jwt.verify(req.body.token, SECRET_KEY_JWT);
     if(tokenReal){
-        console.log('success from localvalidator',req.body)
-         console.log(req.body.userLoginToken)
+        console.log('hi from local validator..')
         next();
         return;
 

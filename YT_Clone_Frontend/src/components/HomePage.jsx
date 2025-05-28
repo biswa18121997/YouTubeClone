@@ -13,7 +13,15 @@ export default function HomePage(){
 
   
 
-    return(<div className="w-[80vw] relative left-[18vw] h-screen">
+    return(<div className="w-[80vw] relative left-[18vw] h-screen top-[15vh]">
+        <section className="flex flex-wrap justify-around">
+            <p className="p-1 m-1 border rounded-2xl">Trending on Youtube</p>
+            <p className="p-1 m-1 border rounded-2xl">Videos Based on Past Watches</p>
+            <p className="p-1 m-1 border rounded-2xl">Videos based on Your Likes</p>
+            <p className="p-1 m-1 border rounded-2xl">Action</p>
+            <p className="p-1 m-1 border rounded-2xl">Adventure</p>
+            <p className="p-1 m-1 border rounded-2xl">Movies/ Entertainment</p>
+        </section>
        {!user &&  <div className="flex flex-col justify-center items-center h-1/2 ">
 
       <div className="flex flex-col justify-center items-center border p-4 m-4">
@@ -30,13 +38,16 @@ export default function HomePage(){
         
         
         </div>}
-        <h1 className="text-center">Videos Trending on Youtube :</h1>
+        <h1 className="text-center">Trending</h1>
         <hr />
         <div className="grid grid-cols-3 grid-rows-3 w-full gap-2">
             
             {data?.items?.map((items)=> <VideoPreviewCard item={items} />)}
         
         
+        </div>
+        <div>
+            
         </div>
         
         </div>)

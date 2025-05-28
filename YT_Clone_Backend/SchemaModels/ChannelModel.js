@@ -4,23 +4,25 @@ import { videoSchema } from './VideoModel.js';
 export const channelSchema= new mongoose.Schema({
     channelId:{
         type : String,
-        required : true,
-        // unique : true ,
-        default : String(new Date().getTime())
+        required: true,
+        default : () => String(Date.now()),
+        
+    },
+    OwnerID:{
+        type : String,
+        required : true,        
+    },
+    channelTitle:{
+        type : String,
+        required: true,
     },
     tags:{
         type : [String],
         required : false,
         default : []
     },
-    channelName:{
-        type : String,
-    },
-    OwnerID:{
-        type : String,
-        required : true,
-        
-    },
+    
+    
     channelDescription:{
         type : String,
         required : true, 
@@ -33,10 +35,12 @@ export const channelSchema= new mongoose.Schema({
     subscribersCount:{
         type : Number,
         default : 0,
+        required: true
     },
     videos:{
         type : [videoSchema],
-        default : []
+        default : [],
+        required: true
     }
 });
 

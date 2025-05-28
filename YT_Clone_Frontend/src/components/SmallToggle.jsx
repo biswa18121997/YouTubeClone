@@ -27,12 +27,12 @@ export default function SmallToggle(){
     {
         name : "Subscribed List",
         icon : `fa-solid fa-bell`,
-        link : '/subcriberslist'
+        link : '/subscriberslist'
 
     }]
 
 
-    return(<div className="flex flex-col fixed justify-self-start items-center w-[8vw] h-screen bg-gray-400">
+    return(<div className="invisible sm:visible  flex flex-col fixed justify-self-start items-center top-[12vh] w-[10vw] p-4 bg-gray-950 h-screen bg-gray-400">
         {smallToggleItems.map((items)=>
         <Link to={items.link}>
         <div className="flex flex-col hover:border items-center  p-2 box m-3">
