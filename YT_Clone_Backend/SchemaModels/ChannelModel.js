@@ -10,7 +10,8 @@ export const channelSchema= new mongoose.Schema({
     },
     OwnerID:{
         type : String,
-        required : true,        
+        required : true, 
+        default : ()=> new Date().getTime()       
     },
     channelTitle:{
         type : String,

@@ -6,7 +6,7 @@ const profileSchema= new mongoose.Schema({
     userID:{
         type: String,
         required : true,
-         
+         default : ()=>new Date().getTime()
     },
     name : {
         type: String,

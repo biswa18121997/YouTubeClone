@@ -25,7 +25,6 @@ export default async function LoginUser(req, res) {
         return res.status(201).json({
                 success : true,
                 user : findUser || null,
-                profile : findProfile || null,
                 token : req.token
              });
         

@@ -1,7 +1,7 @@
 import { CommentModel } from "../SchemaModels/CommentModel.js";
 
 
-export async function SendVideoData(req,res){
+export async function SendCommentsData(req,res){
     try {
         let { token, user, videoId, videoData ,update,comment} = req.body;
         console.log(token, user, videoId, videoData ,update,comment);

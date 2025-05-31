@@ -12,7 +12,7 @@ export const commentSchema = new mongoose.Schema({
     },
     date :{
         type: Date,
-     default :new Date,
+     default :()=>new Date().getTime(),
      required : true
     }
 });

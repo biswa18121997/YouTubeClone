@@ -53,8 +53,8 @@ const routes=createBrowserRouter([{
 }])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    {/* <App /> */}
+
+    
      <RouterProvider router={routes}/>
-  </StrictMode>,
+  
 )

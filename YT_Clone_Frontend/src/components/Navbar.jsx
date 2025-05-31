@@ -12,6 +12,7 @@ export default function Navbar(){
     const [smallToggle,setSmallToggle] =useState(true);
     let {user, profile, token} = useContext(UserContext);
     let {setData}  = useContext(UserContext);
+    console.log(user,token);
     function signOut(){
         localStorage.clear();
         setData({ user:{}, profile:{} ,token: {}});        

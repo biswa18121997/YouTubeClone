@@ -6,8 +6,9 @@ import {UserContext} from '../utils/Context.jsx';
 import { useContext } from 'react';
 
 export default function HomePage(){
-
-    let url ='https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=IN&maxResults=20&key=AIzaSyCLfNg8E42zJZF5obZA-5e4AboR5YzKRFY'
+const API_KEY_2 = 'AIzaSyANrQ1rFYCVFXKpLcuqYnQ7yLuzOcxbMy8';
+const API_KEY = 'AIzaSyCLfNg8E42zJZF5obZA-5e4AboR5YzKRFY'
+    let url =`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&chart=mostPopular&regionCode=IN&maxResults=20&key=${API_KEY_2}`
     let {data,error,loading} = useFetch(url);
    let {user} = useContext(UserContext);
 
