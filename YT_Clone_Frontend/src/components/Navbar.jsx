@@ -24,12 +24,12 @@ export default function Navbar(){
 
 
     return(<>
-    <nav className="h-20 z-90  bg-black flex justify-center-safe md:items-center fixed top-0 w-full md:w-screen flex-col md:flex-row ">
-        <div className="flex w-1/3 m-2 justify-evenly ">
-            <i onClick={()=>setSmallToggle(!smallToggle)} className="fa-solid fa-bars fixed top-5 left-5 active:animate-spin text-3xl mr-4"></i>
+    <nav className="h-20  z-90  bg-neutral-700/50 h-fit flex justify-center-safe md:items-center gap-5 fixed top-0 w-full md:w-screen flex-col md:flex-row ">
+        <div className="flex flex-wrap w-1/3 m-2 justify-evenly ">
+            <i onClick={()=>setSmallToggle(!smallToggle)} className="fa-solid fa-bars fixed top-5 left-5 active:animate-spin text-xl sm:2xl md:text-3xl mr-4"></i>
             <Link to={'/'}>
-             <div className="flex justify-center items-center">
-                <i className="fa-brands fa-youtube h-full  text-red-600 m-1 text-lg sm:text-2xl md:text-4xl "></i>
+             <div className="flex justify-center items-center m-6 sm:flex">
+                <i className="fa-brands fa-youtube h-full  text-red-600 m-1 text-xl sm:text-2xl md:text-4xl "></i>
                 <h1 className="text-2xl sm:text-2xl md:text-3xl  font-bold font-serif m-1">YouTube</h1>
             </div>
             </Link>
@@ -47,12 +47,12 @@ export default function Navbar(){
         <div className="flex w-1/3 justify-center items-center gap-5"> 
             
            
-            <div className='p-2 hidden md:flex flex-row-reverse gap-2  '>
+            <div className='p-2 hidden md:flex flex-row gap-2  '>
                  <Link to={'/profile'}>
                     <img className='h-10 w-10 border bg-cover bg-center rounded-full' src={user?.picture} alt="" />    
                     <h1>{user?.name}</h1>
                 </Link>
-                <Link to={localStorage.getItem('userAuth')?'':'/login'}>
+                <Link to={localStorage.getItem('userAuth')?'/':'/login'}>
                     <button onClick={signOut} className='p-1 m-1 border rounded-2xl text-sm'> <i className="fa-solid fa-right-from-bracket"></i> {localStorage.getItem('userAuth')? "LogOut" : "Log In"}</button>
                 </Link>
             </div>

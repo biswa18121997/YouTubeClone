@@ -108,7 +108,7 @@ function VideoPage() {
         
         //need to add something so that comments are fetched and displayed 
     },[URL_PLAY,data])
-    return (tokenVerified? <div className='w-[85vw] justify-center items-center relative left-[10vw] h-full flex-col flex top-[15vh]'><h1 className='text-white text-3xl text-center font-semibold'>invalid token plesae Login again..!</h1> <Link to={`/login`}> <button className='border p-2 m-2 rounded-2xl'>LOGIN</button></Link> </div> : <div className="w-[85vw] relative left-[10vw] h-full flex-col md:flex-row  flex top-[15vh]">
+    return (tokenVerified? <div className='w-[85vw] justify-center items-center relative left-[10vw] h-full flex-col flex top-[15vh]'><h1 className='text-white text-3xl text-center font-semibold'>invalid token plesae Login again..!</h1> <Link to={`/login`}> <button className='border p-2 m-2 rounded-2xl'>LOGIN</button></Link> </div> : <div className="w-[85vw] relative left-[10vw] h-full flex-col md:flex-row  flex top-[22vh] sm:top-[19vh] md:top-[15vh]">
         <div className='m-5 w-full h-full '>
             <div className="relative w-full h-[60vh]  overflow-hidden rounded-xl">
             <Youtube  className="w-full h-full "  videoId={params.id} opts={{ width: '100%', height : '100%' , playerVars: {autoplay: 0,modestbranding: 1,rel: 0,}}} />

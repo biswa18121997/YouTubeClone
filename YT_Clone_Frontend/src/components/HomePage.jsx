@@ -32,9 +32,9 @@ const API_KEY = 'AIzaSyCLfNg8E42zJZF5obZA-5e4AboR5YzKRFY'
 
             let {data,error,loading} = useFetch(url);
 
-    return(<div className="w-[85vw] relative left-[12vw] h-screen top-[12vh]">
+    return(<div className="w-[85vw] relative left-[12vw] h-screen top-[20vh] sm:top-[15vh] md:top-[12vh]">
         {/* filters */}
-        <section className="flex justify-around z-10 sticky p-2 pt-2 bg-neutral-500/50 top-[12vh] overflow-x-scroll sm:overflow-x-scroll h-[5.5vh] overflow-hidden md:overflow-visible items-center hover:cursor-pointer">
+        <section className="flex justify-around z-10 sticky p-2 pt-2 bg-neutral-500/50 top-[20vh] sm:top-[16vh] md:top-[12vh] overflow-x-scroll sm:overflow-x-scroll h-[5.5vh] overflow-hidden md:overflow-visible items-center hover:cursor-pointer">
             <p onClick={()=>setFilter('Trending on Youtube')} className={`${filter === 'Trending on Youtube' ? 'bg-red-500' : 'bg-black'} p-2 m-1 border rounded-2xl text-nowrap`}>YT Trends</p>
             <p onClick={()=>setFilter('Action')} className={`${filter === 'Action' ? 'bg-red-500' : 'bg-black'} p-2 m-1 border rounded-2xl`}>Action</p>
             <p onClick={()=>setFilter('Adventure')} className={`${filter === 'Adventure' ? 'bg-red-500' : 'bg-black'} p-2 m-1 border rounded-2xl`}>Adventure</p>

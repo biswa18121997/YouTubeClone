@@ -44,8 +44,8 @@ function Search_Videos() {
         VideosPageSearch();
     },[filter,params.id])
   return (
-    <div className="w-[85vw] relative left-[12vw] h-screen top-[12vh]">
-      <section className='flex justify-around sticky top-[10vh] z-10 bg-neutral-600'> 
+    <div className="w-[85vw] relative left-[12vw]  h-screen top-[12vh]">
+      <section className='flex justify-around sticky top-[20vh] sm:top-[15vh] md:top-[10vh] z-20 bg-neutral-600'> 
         <li className={`${filter === 'Action' ? 'bg-red-500' : 'bg-black'} p-2 m-2 rounded-2xl border list-none`} onClick={()=>{ setFilter('Action')}}>Action </li>
         <li className={`${filter === 'Technology' ? 'bg-red-500' : 'bg-black'} p-2 m-2 rounded-2xl border list-none`} onClick={()=>{setFilter('Technology')}}> Technology</li>
         <li className={`${filter === 'Recently Added' ? 'bg-red-500' : 'bg-black'} p-2 m-2 rounded-2xl border list-none`} onClick={()=>{setFilter('Recently Added')}}>Recently Added</li>
@@ -71,14 +71,14 @@ function Search_Videos() {
         </div>} <br />
 {/* filter videos  */}
 <h1 className='text-xl text-center m-3 underline'>Filter: {filter}</h1><hr /><br />
-        <div className='grid grid-cols-3 grid-rows-3 gap-4'>{filterRes.map((item, index)=><Link to={`/video/${item.videoId}`} key={index}> <div className=''> 
+        <div className='grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 grid-rows-3 gap-4 gap-y-6'>{filterRes.map((item, index)=><Link to={`/video/${item.videoId}`} key={index}> <div className=''> 
          { filterRes.length>0  &&  <img src={item.videoThumbnail} alt="" className='w-full' />}
           {  filterRes.length>0 &&  <div>
               <h1 className='text-xl font-bold'>{item?.videoTitle}</h1>
               <h1 className='text-lg text-neutral-500'>{item?.videoDescription.slice(0,70)}</h1>
               <h1 className='text-sm'>{item?.channelId}</h1>
             </div>}
-           {(filterRes.length >0) && <h1>No Videos For This Filter : {filter}</h1>}
+          
 
 
           </div></Link>)}
