@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { createContext } from "react";
 
-
+//use context for storing and sharing data 
 
 export const  UserContext = createContext();
-
+//initializing values from local storage..
 export function UserProvider({children}){
     const [user, setUser] = useState(() => {
         const stored = localStorage.getItem('userAuth');

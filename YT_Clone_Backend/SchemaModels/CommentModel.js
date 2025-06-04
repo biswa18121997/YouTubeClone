@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
+//schema and models for comments..
 
 export const commentSchema = new mongoose.Schema({
+    commentID : {
+        type : String,
+        required : true,
+        default : ()=>String(Date.now())
+    },
     videoID:{
         type: String,
     },

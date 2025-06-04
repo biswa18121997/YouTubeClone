@@ -2,7 +2,7 @@ import { UserModel } from "../SchemaModels/UserModel.js";
 import bcrypt from 'bcrypt'
 
 export const SALT = 8;
-
+// controller function for Register user, inserts user to db..
 
 export default async function RegisterUser(req, res){
     try {   

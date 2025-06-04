@@ -1,5 +1,0 @@
-videopage-----comments not loading when page is loaded--useEffect
-differnt http methods for different things..
-
-
-profile pages..channels page,,downloads,filter,search,

@@ -1,6 +1,6 @@
 import { UserModel } from "../SchemaModels/UserModel.js";
 
-
+//registration middleware to check for duplicate registration..
 export default async function RegisterVerifier(req, res, next){
     try {   
         let {name, email, password} = req.body;

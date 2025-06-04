@@ -2,7 +2,7 @@ import { UserModel } from '../SchemaModels/UserModel.js';
 import { SECRET_KEY_JWT } from './Tokenizer.js';
 import jwt from 'jsonwebtoken'
 
-
+////middleware that runs a verification on the token..
 export default async function TokenVerifier(req, res, next){
     try {   
         let userLoginToken = req.token;

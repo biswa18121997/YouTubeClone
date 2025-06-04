@@ -66,7 +66,7 @@ YT_Clone/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/YT_Clone.git
+git clone https://github.com/biswa18121997/YouTubeClone.git
 cd YT_Clone
 ```
 
@@ -95,7 +95,7 @@ npm start
 ### 4. MongoDB Setup
 
 - Make sure you have MongoDB running locally or use a cloud MongoDB URI.
-- Update your backend `.env` with your MongoDB connection string.
+- Update your backend `.env` with your MongoDB connection string if required.
 
 ---
 

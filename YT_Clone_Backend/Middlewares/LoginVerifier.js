@@ -1,7 +1,7 @@
 import { SALT } from "../Controllers/RegisterUser.js";
 import { UserModel } from "../SchemaModels/UserModel.js";
 import bcrypt from 'bcrypt'
-
+//middleware to verify if the password is correct....
 export default async function LoginVerifier(req, res, next){
     try {   
         let { email, password} = req.body;

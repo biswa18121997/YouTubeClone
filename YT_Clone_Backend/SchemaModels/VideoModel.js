@@ -1,10 +1,11 @@
 import mongoose from 'mongoose'
 import { commentSchema } from './CommentModel.js';
+//schema and models for videos....
 
 export const videoSchema= new mongoose.Schema({
     videoId:{
         type: String,
-       // unique : true,
+       // unique : true,6
         required : true,
         default: ()=>new Date().getTime()
     },
@@ -23,6 +24,11 @@ export const videoSchema= new mongoose.Schema({
         required : true,
         default : 0,
     },
+    views : {
+        type : Number,
+        required : true,
+        default : 0
+    },
     dislikes:{
         type : Number,
         required : true,
@@ -30,7 +36,8 @@ export const videoSchema= new mongoose.Schema({
     },
     videoThumbnail:{
         type:String , 
-        default :'https://img.freepik.com/premium-vector/red-youtube-logo-social-media-logo_197792-1803.jpg?semt=ais_hybrid&w=740'
+        default :'https://img.freepik.com/premium-vector/red-youtube-logo-social-media-logo_197792-1803.jpg?semt=ais_hybrid&w=740',
+        required:true
 
     },
     videoTitle:{
@@ -45,6 +52,11 @@ export const videoSchema= new mongoose.Schema({
     channelId:{
         type : String,
         required: true
+    },
+    createdOn : {
+        type : String,
+        required : true,
+        default : ()=>String(Date.now())
     }
     
 });

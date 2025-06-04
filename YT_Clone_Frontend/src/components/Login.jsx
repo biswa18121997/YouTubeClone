@@ -12,10 +12,11 @@ export default  function Login(){
     let [response , setResponse] = useState();
     let redirect = useNavigate();
     let {setData}  = useContext(UserContext);
-
+//login page component..
     async function handleLogin(e){
         e.preventDefault();
         try {
+            //sending email pass to middlewares..
             const res = await fetch('http://localhost:8086/login', { // Change URL if needed
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -25,14 +26,12 @@ export default  function Login(){
             setResponse(data);
           if(data.success){
             setData({ user: data.user, profile: data.profile ,token: data.token});
-            console.log(data.token)
             localStorage.setItem('userAuth', JSON.stringify(data));
             redirect('/');
           }
           else{ 
             setData({});
-            // setEmail('');
-            // setPassword('');
+            
           }
         } catch (error) {
             console.log(error)
@@ -54,7 +53,7 @@ export default  function Login(){
                 <label htmlFor="loginpassword">Password :</label>
                 <section className="w-full flex justify-center items-center">
                 <input type={show?'text':'password'} name="password"  onChange={(e)=>setPassword(e.target.value)} id="loginpassword" placeholder="Enter your password " className="p-2 bg-neutral-400 w-full rounded-3xl m-2"/>
-                <i onClick={()=>setShow(!show)} class={show?'fa-solid fa-eye':'fa-solid fa-eye-low-vision' }></i>
+                <i onClick={()=>setShow(!show)} className={show?'fa-solid fa-eye':'fa-solid fa-eye-low-vision' }></i>
                 </section>
                 <p className="text-blue-700 underline underline-offset-8 m-1" onClick={()=>alert('No Worries just Create a New One.')}>Forgot your Password .? </p>
                 

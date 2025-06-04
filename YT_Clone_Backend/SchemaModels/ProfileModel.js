@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { channelSchema } from './ChannelModel.js';
 import { videoSchema } from './VideoModel.js';
+////schema and models for profile....
 
 const profileSchema= new mongoose.Schema({
     userID:{

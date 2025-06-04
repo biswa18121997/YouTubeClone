@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {Link} from 'react-router-dom'
 
-
+//register page component..
 export default function Register(){
 
     const [show, setShow] = useState(false);
@@ -10,7 +10,7 @@ export default function Register(){
     const [password, setPassword] = useState('');
     let [response, setResponse] = useState();
 
-
+//taking inpout and sending it to server..
     async function handleRegister(e){
         e.preventDefault();
         try {
@@ -23,8 +23,8 @@ export default function Register(){
             setName('');
             setMail('')
             setPassword('')
+            //setting response ..
             setResponse(await res.json())
-            // console.log(response)
         } catch (error) {
             console.log(error)
         }
@@ -35,7 +35,7 @@ export default function Register(){
         <div className="flex flex-col justify-center items-center h-4/5 w-3/4 ">
             <h1 className="text-3xl font-serif underline underline-offset-8">Register as a new User :</h1><br /><br />
             <hr />
-
+{/* //register form */}
             <form action="POST" className="flex flex-col justify-center items-center border p-4 rounded-2xl w-2/3">
                 <i className="fa-solid fa-user  p-2 m-2 rounded-2xl text-8xl border-2 text-center"></i>
                 <label htmlFor="registername" onChange={(e)=>setName(e.target.value)} className="text-start">Enter Full Name :</label>
@@ -45,7 +45,7 @@ export default function Register(){
                 <label htmlFor="loginpassword">Password :</label>
                 <section className="w-full flex justify-center items-center">
                     <input type={show?'text':'password'} name="password" id="loginpassword" onChange={(e)=>setPassword(e.target.value)} placeholder="Enter your password " className="p-2 bg-neutral-400 w-full rounded-3xl m-2"/>
-                    <i onClick={()=>setShow(!show)} class={show?'fa-solid fa-eye':'fa-solid fa-eye-low-vision' }></i>
+                    <i onClick={()=>setShow(!show)} className={show?'fa-solid fa-eye':'fa-solid fa-eye-low-vision' }></i>
                 </section>
                     <p className="text-blue-700 underline underline-offset-8 m-1">Forgot your Password .? </p>         
                     <button onClick={handleRegister} className="p-2 m-2 rounded-2xl border w-full">Register</button> 

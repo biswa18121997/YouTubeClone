@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import { UserModel } from '../SchemaModels/UserModel.js';
 
 export const SECRET_KEY_JWT = 'YT_Clone'
-
+//middleware to create a login token using jwt..
 export default async function Tokenizer(req, res, next){
     try {   
         let {email,userID, name} = await UserModel.findOne({email: req.body.email});

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+//schema and models for users.....
 
 export const userSchema= new mongoose.Schema({
     userID:{

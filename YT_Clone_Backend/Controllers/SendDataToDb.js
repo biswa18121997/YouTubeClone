@@ -1,33 +1,34 @@
 import { ChannelModel } from "../SchemaModels/ChannelModel.js";
 import { ProfileModel } from "../SchemaModels/ProfileModel.js";
 import { VideoModel } from "../SchemaModels/VideoModel.js";
-import { CommentModel } from "../SchemaModels/CommentModel.js";
 
-
+//controller function for updating db with the newly watched video views and channels creation and profile initialization..
 export async function SendDataToDb(req, res) {
 
     try {
-        let {videoId, token, user, videoData, profile } = req.body;
+        let {videoId, user, videoData } = req.body;
         let snippet = videoData?.snippet;
         let statistics = videoData?.statistics;
-        // console.log(snippet,statistics,"check snippet ");
-        //check for video..
         let checkVideo = await VideoModel.findOne({videoId: req.params.id});
         if(!checkVideo){
+            //creating video if not already present..
             await VideoModel.create({videoId,
                                     tags: snippet?.tags?.slice(0, 5),
                                     likes: statistics?.likeCount || 0,
+                                    views : statistics?.viewCount ,
                                     comments: [],
                                     videoThumbnail: snippet?.thumbnails?.medium?.url,
                                     videoTitle: snippet?.title,
                                     videoDescription: snippet?.description,
                                     channelId: snippet?.channelId,
+                                    createdOn : snippet?.publishedAt
                                 })
         }
+        //creating channel if not already present..
         let checkChannel = await ChannelModel.findOne({channelId : snippet?.channelId})
         if(!checkChannel){
             await ChannelModel.create({channelId: snippet?.channelId,
-                                       
+                                       OwnerID :  snippet?.channelId,
                                         channelTitle: snippet?.channelTitle,
                                         tags : snippet?.tags?.slice(0,2),
                                         subscribersCount : 0,
@@ -35,10 +36,12 @@ export async function SendDataToDb(req, res) {
                                                 tags: snippet?.tags?.slice(0, 5),
                                                 likes: statistics?.likeCount || 0,
                                                 comments: [],
+                                                views : statistics?.viewCount,
                                                 videoThumbnail: snippet?.thumbnails?.medium?.url,
                                                 videoTitle: snippet?.title,
                                                 videoDescription: snippet?.description,
-                                                channelId: snippet?.channelId
+                                                channelId: snippet?.channelId,
+                                                createdOn : snippet?.publishedAt
                                             }]
             })
         }
@@ -49,41 +52,58 @@ export async function SendDataToDb(req, res) {
                                                                                                                                     tags: snippet?.tags?.slice(0, 5),
                                                                                                                                     likes: statistics?.likeCount || 0,
                                                                                                                                     comments: [],
+                                                                                                                                    views : statistics?.viewCount,
                                                                                                                                     videoThumbnail: snippet?.thumbnails?.medium?.url,
                                                                                                                                     videoTitle: snippet?.title,
                                                                                                                                     videoDescription: snippet?.description,
-                                                                                                                                    channelId: snippet?.channelId}}})
+                                                                                                                                    channelId: snippet?.channelId,
+                                                                                                                                    createdOn : snippet?.publishedAt}}})
+            else{
+                await ChannelModel.findOneAndUpdate({channelId: snippet?.channelId, 'videos.videoId': req.params.id },{ $inc: { 'videos.$.views': 1 } });
+            }
             
         }
+        //creating profile if not already there..
     let profileCheck = await ProfileModel.findOne({email : user?.email})
     if(!profileCheck){
         await ProfileModel.create({userID:user?.userID ,
                                 name : user?.name ,
                                 email : user?.email,
-                                interests : snippet?.tags?.slice(0,3),
+                                interests : snippet?.tags?.slice(0,2),
                                 downloaded : [],
                                 history : [{videoId,
-                                                tags: snippet?.tags?.slice(0, 5),
-                                                likes: statistics?.likeCount || 0,
-                                                comments: [],
-                                                videoThumbnail: snippet?.thumbnails?.medium?.url,
-                                                videoTitle: snippet?.title,
-                                                videoDescription: snippet?.description,
-                                                channelId: snippet?.channelId}],
+                                            tags: snippet?.tags?.slice(0, 5),
+                                            likes: statistics?.likeCount || 0,
+                                            comments: [],
+                                            views : statistics?.viewCount,
+                                            videoThumbnail: snippet?.thumbnails?.medium?.url,
+                                            videoTitle: snippet?.title,
+                                            videoDescription: snippet?.description,
+                                            channelId: snippet?.channelId,
+                                            createdOn : snippet?.publishedAt}],
                                 recentlyLikedVideos :[] ,
                                 subscribedChannels :[] ,
                                 channels : []
         })
     }
     else{
-        await ProfileModel.findOneAndUpdate({email : user.email}, {$push : {interests : {$each :snippet?.tags?.slice(0,2)},history:{videoId,
-                                                                                                                tags: snippet?.tags?.slice(0, 5),
-                                                                                                                likes: statistics?.likeCount || 0,
-                                                                                                                comments: [],
-                                                                                                                videoThumbnail: snippet?.thumbnails?.medium?.url,
-                                                                                                                videoTitle: snippet?.title,
-                                                                                                                videoDescription: snippet?.description,
-                                                                                                                channelId: snippet?.channelId}}})
+        await ProfileModel.findOneAndUpdate({email : user.email}, {$push :  {
+                                                                            interests: {
+                                                                                $each: snippet?.tags?.slice(0, 2) || [],
+                                                                            },
+                                                                            history: {
+                                                                                videoId,
+                                                                                tags: snippet?.tags?.slice(0, 5),
+                                                                                likes: statistics?.likeCount || 0,
+                                                                                comments: [],
+                                                                                views: statistics?.viewCount,
+                                                                                videoThumbnail: snippet?.thumbnails?.medium?.url,
+                                                                                videoTitle: snippet?.title,
+                                                                                videoDescription: snippet?.description,
+                                                                                channelId: snippet?.channelId,
+                                                                                createdOn: snippet?.publishedAt,
+                                                                            },
+                                                                            },})
     }
     return res.status(200).json({message : 'sucess'})
 

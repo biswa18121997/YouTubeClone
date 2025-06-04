@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { videoSchema } from './VideoModel.js';
-
+//schema and models for channels..
 export const channelSchema= new mongoose.Schema({
     channelId:{
         type : String,
@@ -31,7 +31,8 @@ export const channelSchema= new mongoose.Schema({
     },
     channelBanner :{
         type : String,
-        default : 'https://eternitymarketing.com/assets/image-cache/blog/YouTubeCoverImage.8bc2171d.png'
+        default : 'https://eternitymarketing.com/assets/image-cache/blog/YouTubeCoverImage.8bc2171d.png',
+        required : true
     },
     subscribersCount:{
         type : Number,
